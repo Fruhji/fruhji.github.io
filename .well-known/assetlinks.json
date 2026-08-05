@@ -1,11 +1,14 @@
 [
   {
-    "relation": ["delegate_permission/common.handle_all_urls"],
+    "relation": [
+      "delegate_permission/common.handle_all_urls"
+    ],
     "target": {
       "namespace": "android_app",
       "package_name": "dev.oche.app",
       "sha256_cert_fingerprints": [
-        "9D:66:C3:43:C5:9C:48:11:54:00:68:03:33:38:DF:EA:8B:F4:E7:D5:DA:62:80:40:01:9B:34:9F:11:FF:04:C4"
+        "9D:66:C3:43:C5:9C:48:11:54:00:68:03:33:38:DF:EA:8B:F4:E7:D5:DA:62:80:40:01:9B:34:9F:11:FF:04:C4",
+        "C8:49:38:EB:35:6B:F0:9B:56:69:FF:01:5F:63:D4:1D:2C:49:C3:83:1C:D4:88:DF:A9:57:52:0B:8C:B0:CC:8E"
       ]
     }
   }

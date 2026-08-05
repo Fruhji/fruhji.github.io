@@ -12,15 +12,17 @@ wird, greift Play App Signing: Google signiert das APK beim Ausliefern mit
 einem eigenen Schlüssel neu. Ein Gerät, das die App aus dem Play Store hat,
 prüft gegen diesen Schlüssel.
 
-Aktuell steht hier der **Upload-Schlüssel** aus `android/oche-release.jks`. Das
-reicht für ein per `adb install` aufgespieltes Build, aber **nicht** für eine
-aus dem Play Store installierte App.
+**Beide Fingerabdrücke stehen drin (Stand 05.08.2026):**
 
-Der richtige Wert steht in der Play Console unter
-**Test und Veröffentlichung → Einrichtung → App-Integrität →
-App-Signaturschlüssel-Zertifikat → SHA-256-Zertifikat-Fingerabdruck**.
-Er gehört zusätzlich in die Liste `sha256_cert_fingerprints` — beide dürfen
-nebeneinander stehen, dann funktionieren Sideload und Store-Installation.
+- `9D:66:C3:…` — Upload-Schlüssel aus `android/oche-release.jks`, gilt für
+  per `adb install` aufgespielte Builds
+- `C8:49:38:…` — **Play-App-Signaturschlüssel**, gilt für alles aus dem Store
+
+Zu finden in der Play Console unter
+`…/app/<appId>/keymanagement` → „Zertifikat für den App-Signaturschlüssel".
+Für Oche: App-ID **4973096735861338560**, Konto **5424999985196990756**.
+Der Menüweg heißt dort **Mit Google Play geschützt → App-Signatur** — nicht
+„App-Integrität", wie die Hilfeseiten teils noch schreiben.
 
 Prüfen lässt sich das Ergebnis ohne Gerät:
 
