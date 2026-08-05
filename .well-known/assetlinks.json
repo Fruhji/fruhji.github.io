@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "dev.oche.app",
+      "sha256_cert_fingerprints": [
+        "9D:66:C3:43:C5:9C:48:11:54:00:68:03:33:38:DF:EA:8B:F4:E7:D5:DA:62:80:40:01:9B:34:9F:11:FF:04:C4"
+      ]
+    }
+  }
+]

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OCHE – Raum beitreten</title>
+  <meta name="robots" content="noindex">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: #0d0d0d;
+      color: #e0e0e0;
+      line-height: 1.6;
+      padding: 40px 20px;
+      max-width: 480px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    h1 { color: #F5C518; font-size: 2rem; font-weight: 800; letter-spacing: 0.05em; }
+    .sub { color: #888; font-size: 0.9rem; margin-bottom: 32px; }
+    .code {
+      font-size: 2.4rem;
+      font-weight: 800;
+      letter-spacing: 0.28em;
+      color: #F5C518;
+      margin: 8px 0 4px;
+      font-variant-numeric: tabular-nums;
+    }
+    .code-label { font-size: 0.75rem; letter-spacing: 0.12em; text-transform: uppercase; color: #666; }
+    .card { background: #1a1a1a; border-radius: 12px; padding: 24px 20px; margin: 24px 0; }
+    a.btn {
+      display: block;
+      background: #F5C518;
+      color: #0d0d0d;
+      text-decoration: none;
+      font-weight: 700;
+      padding: 14px 20px;
+      border-radius: 10px;
+      margin-top: 12px;
+    }
+    a.ghost {
+      display: block;
+      border: 1px solid #333;
+      color: #F5C518;
+      text-decoration: none;
+      padding: 13px 20px;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+    .hint { font-size: 0.85rem; color: #777; margin-top: 24px; }
+  </style>
+</head>
+<body>
+
+  <h1>OCHE</h1>
+  <p class="sub">Einem Dartabend beitreten</p>
+
+  <div class="card">
+    <div class="code-label">Raumcode</div>
+    <div class="code" id="code">------</div>
+    <a class="btn" id="open" href="#">In der App öffnen</a>
+    <a class="ghost" id="store" href="https://apps.apple.com/app/id6779149101">App laden</a>
+  </div>
+
+  <p class="hint" id="hint">
+    Wenn Oche installiert ist, öffnet der Link den Raum direkt.
+    Sonst lädst du die App und tippst den Code oben ein.
+  </p>
+
+<script>
+(function () {
+  // Der Code kommt als ?code=ABC123. Nur die sechs Zeichen des Alphabets
+  // durchlassen - alles andere waere ein manipulierter Link.
+  var raw = new URLSearchParams(location.search).get('code') || '';
+  var code = raw.toUpperCase().replace(/[^A-HJ-NP-Z2-9]/g, '').slice(0, 6);
+
+  var codeEl = document.getElementById('code');
+  var openEl = document.getElementById('open');
+  var storeEl = document.getElementById('store');
+
+  if (code.length === 6) {
+    codeEl.textContent = code;
+    openEl.href = 'oche://app/room/join?v=1&code=' + code;
+  } else {
+    codeEl.textContent = '------';
+    openEl.style.display = 'none';
+    document.getElementById('hint').textContent =
+      'Dieser Link enthält keinen gültigen Raumcode. Frag den Gastgeber nach dem Code und tippe ihn in der App ein.';
+  }
+
+  // Store nach Plattform. Android bekommt den Play-Link, alles andere den
+  // App-Store-Link - der ist auch am Rechner die sinnvollere Auskunft.
+  if (/android/i.test(navigator.userAgent)) {
+    storeEl.href = 'https://play.google.com/store/apps/details?id=dev.oche.app';
+  }
+
+  // **Kein automatischer Sprung in die App.** Ein Redirect auf ein
+  // Custom-Scheme, das niemand registriert hat, endet je nach Browser in einer
+  // Fehlerseite oder einem Dialog, den niemand versteht. Wer die App hat,
+  // landet ohnehin nie hier: iOS und Android fangen den Link vorher ab und
+  // oeffnen die App direkt. Diese Seite ist der Fall "App nicht installiert" -
+  // und dort ist ein sichtbarer Knopf ehrlicher als ein stiller Versuch.
+})();
+</script>
+
+</body>
+</html>

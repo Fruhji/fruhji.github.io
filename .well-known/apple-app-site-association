@@ -1,0 +1,15 @@
+{
+  "applinks": {
+    "details": [
+      {
+        "appIDs": ["R37Q54JBKD.dev.oche.app"],
+        "components": [
+          {
+            "/": "/oche/join*",
+            "comment": "Beitritt zu einem Oche-Raum per Code"
+          }
+        ]
+      }
+    ]
+  }
+}
