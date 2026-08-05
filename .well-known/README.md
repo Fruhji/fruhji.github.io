@@ -35,12 +35,23 @@ melden.
 
 ## apple-app-site-association (iOS)
 
-Ohne Dateiendung und mit `Content-Type: application/json` auszuliefern — das
-ist bei GitHub Pages der wackelige Punkt, weil Pages endungslose Dateien als
-`application/octet-stream` ausliefert. Wenn Apple die Datei deshalb ablehnt,
-ist der Ausweg, beide Dateien stattdessen vom Cloudflare-Worker
-(`oche-room-worker`) ausliefern zu lassen; der kann den Content-Type exakt
-setzen. Die App müsste dann auf dessen Host zeigen.
+Ohne Dateiendung, und Apple verlangt laut Dokumentation
+`Content-Type: application/json`. GitHub Pages liefert endungslose Dateien
+aber als `application/octet-stream` aus.
+
+**Gemessen am 05.08.2026: Apple akzeptiert es trotzdem.** Der eigene CDN hat
+die Datei geholt und geparst —
+
+```
+curl https://app-site-association.cdn-apple.com/a/v1/fruhji.github.io
+```
+
+liefert den Inhalt zurück, nicht 404. Das ist der belastbare Test; die
+Content-Type-Angabe allein sagt nichts darüber, ob es funktioniert.
+
+Sollte Apple das später enger auslegen, ist der Ausweg, beide Dateien vom
+Cloudflare-Worker (`oche-room-worker`) auszuliefern — der kann den Content-Type
+exakt setzen. Die App müsste dann auf dessen Host zeigen.
 
 Die App-ID ist `<TeamID>.<BundleID>`, für Oche also `R37Q54JBKD.dev.oche.app`.
 Die Berechtigung „Associated Domains" muss zusätzlich am App-Identifier im
