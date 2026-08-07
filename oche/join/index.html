@@ -70,9 +70,24 @@
 
 <script>
 (function () {
-  // Der Code kommt als ?code=ABC123. Nur die sechs Zeichen des Alphabets
-  // durchlassen - alles andere waere ein manipulierter Link.
-  var raw = new URLSearchParams(location.search).get('code') || '';
+  // Der Code kommt als ?code=ABC123 oder als #code=ABC123, und beides muss
+  // hier gelesen werden.
+  //
+  // **Warum das Fragment die bessere Stelle ist:** der Raumcode ist das
+  // einzige Geheimnis eines Raums - mit ihm und einem beliebigen Namen liefert
+  // das Relay ein Token mit Schreibrecht. Als Abfrage steht er im
+  // Serverprotokoll von GitHub Pages und im `Referer` jeder Ressource, die
+  // diese Seite nachlaedt. Ein Fragment schickt der Browser nie zum Server.
+  //
+  // Die Abfrage muss trotzdem bleiben: die ausgelieferten Apps (Play vc37,
+  // iOS Build 37) erzeugen ihre Links noch so. Diese Seite zuerst umzustellen
+  // ist genau die richtige Reihenfolge - sie versteht damit schon beide
+  // Formen, bevor der Erzeuger wechselt. Gewinnt die Abfrage, wenn beides da
+  // ist, wie in der App auch.
+  var fragment = location.hash.replace(/^#/, '');
+  var fromFragment = new URLSearchParams(fragment).get('code')
+    || (/^[A-Za-z0-9]{1,12}$/.test(fragment) ? fragment : '');
+  var raw = new URLSearchParams(location.search).get('code') || fromFragment || '';
   var code = raw.toUpperCase().replace(/[^A-HJ-NP-Z2-9]/g, '').slice(0, 6);
 
   var codeEl = document.getElementById('code');
