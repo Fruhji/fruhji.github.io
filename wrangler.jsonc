@@ -1,0 +1,10 @@
+{
+  "name": "oche-site",
+  "compatibility_date": "2026-08-08",
+  "assets": {
+    "directory": "./oche",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page"
+  },
+  "observability": { "enabled": true }
+}
