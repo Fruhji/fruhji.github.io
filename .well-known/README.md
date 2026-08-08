@@ -1,6 +1,7 @@
 # .well-known — App Links und Universal Links
 
-Diese beiden Dateien sorgen dafür, dass ein Link auf `fruhji.github.io` die
+Diese beiden Dateien sorgen dafür, dass ein Link auf
+`oche-site.fruhji.workers.dev` die
 zugehörige App öffnet, statt im Browser zu landen. Ohne sie ist ein
 `https://…`-Link nur eine Webseite.
 
@@ -28,7 +29,7 @@ Prüfen lässt sich das Ergebnis ohne Gerät:
 
 ```
 https://digitalassetlinks.googleapis.com/v1/statements:list
-  ?source.web.site=https://fruhji.github.io
+  ?source.web.site=https://oche-site.fruhji.workers.dev
   &relation=delegate_permission/common.handle_all_urls
 ```
 
@@ -38,22 +39,17 @@ melden.
 ## apple-app-site-association (iOS)
 
 Ohne Dateiendung, und Apple verlangt laut Dokumentation
-`Content-Type: application/json`. GitHub Pages liefert endungslose Dateien
-aber als `application/octet-stream` aus.
+`Content-Type: application/json`. Der Cloudflare-Worker liefert die Datei
+direkt ohne Redirect aus.
 
-**Gemessen am 05.08.2026: Apple akzeptiert es trotzdem.** Der eigene CDN hat
-die Datei geholt und geparst —
+Der direkte Endpunkt wird mit folgendem Befehl geprüft:
 
 ```
-curl https://app-site-association.cdn-apple.com/a/v1/fruhji.github.io
+curl -i https://oche-site.fruhji.workers.dev/.well-known/apple-app-site-association
 ```
 
-liefert den Inhalt zurück, nicht 404. Das ist der belastbare Test; die
-Content-Type-Angabe allein sagt nichts darüber, ob es funktioniert.
-
-Sollte Apple das später enger auslegen, ist der Ausweg, beide Dateien vom
-Cloudflare-Worker (`oche-room-worker`) auszuliefern — der kann den Content-Type
-exakt setzen. Die App müsste dann auf dessen Host zeigen.
+Bereits geteilte Links auf `fruhji.github.io/oche/join` bleiben als
+Kompatibilitätspfad lesbar, werden von neuen Builds aber nicht mehr erzeugt.
 
 Die App-ID ist `<TeamID>.<BundleID>`, für Oche also `R37Q54JBKD.dev.oche.app`.
 Die Berechtigung „Associated Domains" muss zusätzlich am App-Identifier im

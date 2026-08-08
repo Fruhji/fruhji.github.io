@@ -5,8 +5,12 @@
         "appIDs": ["R37Q54JBKD.dev.oche.app"],
         "components": [
           {
-            "/": "/oche/join*",
+            "/": "/join*",
             "comment": "Beitritt zu einem Oche-Raum per Code"
+          },
+          {
+            "/": "/oche/join*",
+            "comment": "Kompatibler alter Oche-Beitrittspfad"
           }
         ]
       }

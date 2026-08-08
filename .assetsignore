@@ -1,0 +1,7 @@
+*
+.*
+!oche/
+!oche/**
+!.well-known/
+!.well-known/apple-app-site-association
+!.well-known/assetlinks.json
