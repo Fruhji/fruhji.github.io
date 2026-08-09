@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    if (window.location.hostname === "fruhji.github.io") {
+      window.location.replace("https://oche-site.fruhji.workers.dev/privacy");
+    }
+  </script>
   <title>OCHE – Privacy Policy</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -64,13 +69,18 @@
 
   <h2>1. General</h2>
   <p>This privacy policy applies to the iOS and Android app <strong>OCHE – Dart Scorer</strong> (referred to as "the App"). It describes what data the App processes and how it is used.</p>
-  <p>Where a section applies only to a particular version of the App, this is stated. Version 3.0 and earlier have no shared room over the internet; section 4 does not apply to them.</p>
+  <p>Where a section applies only to a particular version of the App, this is stated. Version 3.0 and earlier have no shared room over the internet; section 5 does not apply to them.</p>
 
   <h2>2. What Stays on Your Device</h2>
   <p>The App stores scores, player profiles, statistics, tournaments and training results in a local SQLite database on your device. Outside of a shared room, this data does not leave your device and is only accessible to you.</p>
-  <p>You can delete all stored data at any time by uninstalling the App, or on Android additionally by clearing the App's data in the system settings.</p>
+  <p>You can delete App-local data by uninstalling the App, or on Android additionally by clearing the App's data in the system settings. This does not delete backup or export files that you deliberately saved outside the App.</p>
 
-  <h2>3. No Account, No Tracking</h2>
+  <h2>3. Encrypted Backups and Exports</h2>
+  <p>Backups are optional and start only after you choose a destination through the iOS or Android system file picker. OCHE writes encrypted <code>.ocb</code> generations and a small pointer file into that selected folder, reads each generation back and verifies it cryptographically before publishing the pointer. Older generations remain available for recovery.</p>
+  <p>OCHE receives no cloud password and no account-wide access. The operating system grants the App revocable access only to the folder you selected. Your backup passphrase is protected locally with the iOS Keychain or Android Keystore and cannot be recovered or reset by OCHE or Fruhji.</p>
+  <p>A manual export is created temporarily on the device, passed to the system share sheet, and removed from the App's temporary storage when sharing finishes. Files saved in an external or cloud folder are controlled by you and that provider. They are not deleted when you disconnect the folder or uninstall the App and remain until you or the provider remove them.</p>
+
+  <h2>4. No Account, No Tracking</h2>
   <ul style="padding-left: 20px; color: #ccc; margin-bottom: 12px;">
     <li style="margin-bottom: 6px;">No user account is created or required. We never ask for an email address, phone number or name.</li>
     <li style="margin-bottom: 6px;">No analytics, tracking, or advertising services are used.</li>
@@ -78,7 +88,7 @@
     <li style="margin-bottom: 6px;">Nothing you enter is used for profiling or passed to advertisers.</li>
   </ul>
 
-  <h2>4. The Shared Room (from version 3.1)</h2>
+  <h2>5. The Shared Room (from version 3.1)</h2>
   <p>A shared room lets several people follow and score the same evening from their own phones, even when they are not in the same network. It is entirely voluntary: it starts only when you open a room or enter a room code, and it ends when the room is deleted.</p>
   <p>While a room is active, the following is transmitted to our server and stored there:</p>
   <ul style="padding-left: 20px; color: #ccc; margin-bottom: 12px;">
@@ -94,24 +104,24 @@
   <p><strong>Processor:</strong> the room service runs on the infrastructure of Cloudflare, Inc., which processes this data on our behalf. As part of operating the connection, Cloudflare also processes your IP address; we do not store it and do not use it to identify you.</p>
   <p><strong>Legal basis:</strong> Art. 6(1)(b) GDPR — processing is necessary to provide the function you requested by opening or joining a room. There is no other purpose.</p>
 
-  <h2>5. Internet Access</h2>
+  <h2>6. Internet Access</h2>
   <p>The App requests internet access on Android and iOS. It is used for the shared room and for nothing else. If you never open or join a room, the App makes no network requests of its own.</p>
 
-  <h2>6. Third Parties</h2>
-  <p>The App uses no advertising SDKs and no analytics SDKs. The only external service involved is the room infrastructure described in section 4. Nothing is sold or passed on to third parties.</p>
+  <h2>7. Third Parties</h2>
+  <p>The App uses no advertising SDKs and no analytics SDKs. Cloudflare operates the room infrastructure described in section 5. A file provider you deliberately select processes backup files under its own privacy terms. Nothing is sold or passed to advertisers.</p>
 
-  <h2>7. Your Rights</h2>
-  <p>Because there is no account, data outside a room exists only on your own device and is under your control; uninstalling the App removes it. For data inside a room, deletion happens automatically after twelve hours. If you want a room removed sooner, or have any question about access, correction or erasure under the GDPR, contact us using the link below and name the room code.</p>
+  <h2>8. Your Rights</h2>
+  <p>Because there is no OCHE account, local data is under your control and uninstalling the App removes it. External backup or export files must be deleted at the destination you selected. For data inside a room, deletion happens automatically after twelve hours. If you want a room removed sooner, or have any question about access, correction or erasure under the GDPR, contact us using the link below and name the room code.</p>
 
-  <h2>8. Children</h2>
-  <p>The App is suitable for all age groups. It collects nothing about a user outside a shared room; inside a room, only the names and throws described in section 4 are processed, and they are deleted automatically.</p>
+  <h2>9. Children</h2>
+  <p>The App is suitable for all age groups. It collects nothing about a user outside a shared room; inside a room, only the names and throws described in section 5 are processed, and they are deleted automatically.</p>
 
-  <h2>9. Changes to This Policy</h2>
+  <h2>10. Changes to This Policy</h2>
   <p>If anything changes about how data is handled, this privacy policy will be updated accordingly. The date of the last update is shown below.</p>
 
-  <h2>10. Contact</h2>
+  <h2>11. Contact</h2>
   <p>If you have any questions about this privacy policy, you can reach us at:</p>
-  <p><a href="https://github.com/Fruhji/fruhji.github.io/issues">github.com/Fruhji/fruhji.github.io/issues</a></p>
+  <p><a href="mailto:hello@fruhji.com?subject=OCHE%20privacy">hello@fruhji.com</a></p>
 
   <p class="updated">Last updated: August 2026</p>
 

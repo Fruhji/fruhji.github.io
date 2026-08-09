@@ -3,6 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script>
+    if (window.location.hostname === "fruhji.github.io") {
+      window.location.replace("https://oche-site.fruhji.workers.dev/");
+    }
+  </script>
   <title>OCHE – Dart Scorer | Support</title>
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -73,14 +78,15 @@
   <ul>
     <li><strong>Does the app need an internet connection?</strong> Not for scoring. Games, players and statistics work fully offline and stay on your device. Only the shared room (from version 3.1), where several phones follow the same evening, uses the internet – and only while a room is open.</li>
     <li><strong>Do I need an account?</strong> No. There is no registration and no login.</li>
-    <li><strong>Where are my statistics stored?</strong> In a local database on your device. Uninstalling the app deletes all data.</li>
+    <li><strong>Where are my statistics stored?</strong> In a local database on your device. Uninstalling removes that local data, but it does not delete encrypted backup or export files that you deliberately saved through a system file provider or share destination.</li>
+    <li><strong>How do encrypted backups work?</strong> You choose a folder through the iOS or Android system picker. OCHE can access only that selected folder, verifies each encrypted backup after writing it, and cannot recover or reset your passphrase. Copies in that folder remain until you or the file provider delete them.</li>
     <li><strong>Which game modes are available?</strong> X01 (301, 501, 701 and more with Double-In/Double-Out, legs and sets), Cricket, Around the Clock, and Shanghai.</li>
     <li><strong>Which languages are supported?</strong> The app is available in 27 languages, including English and German.</li>
   </ul>
 
   <h2>Contact</h2>
   <p>Questions, feedback, or bug reports? Reach us here:</p>
-  <p><a href="https://github.com/Fruhji/fruhji.github.io/issues">github.com/Fruhji/fruhji.github.io/issues</a></p>
+  <p><a href="mailto:hello@fruhji.com?subject=OCHE%20support">hello@fruhji.com</a></p>
 
   <h2>Privacy</h2>
   <p>OCHE has no account, no tracking and no advertising. Everything you do alone stays on your device; only a shared room passes names and throws through a server, and it deletes itself after twelve hours. Read the full <a href="privacy.html">Privacy Policy</a>.</p>
@@ -98,19 +104,20 @@
   <ul lang="de">
     <li><strong>Braucht die App eine Internetverbindung?</strong> Zum Zählen nicht. Spiele, Spieler und Statistiken laufen vollständig offline und bleiben auf deinem Gerät. Nur der gemeinsame Raum (ab Version 3.1), in dem mehrere Telefone denselben Abend verfolgen, nutzt das Internet – und auch nur, solange ein Raum offen ist.</li>
     <li><strong>Brauche ich ein Konto?</strong> Nein. Es gibt keine Registrierung und keinen Login.</li>
-    <li><strong>Wo werden meine Statistiken gespeichert?</strong> In einer lokalen Datenbank auf deinem Gerät. Beim Deinstallieren der App werden alle Daten gelöscht.</li>
+    <li><strong>Wo werden meine Statistiken gespeichert?</strong> In einer lokalen Datenbank auf deinem Gerät. Eine Deinstallation entfernt diese lokalen Daten, aber nicht verschlüsselte Backup- oder Exportdateien, die du bewusst über einen System-Dateianbieter oder ein Teilen-Ziel gespeichert hast.</li>
+    <li><strong>Wie funktionieren verschlüsselte Backups?</strong> Du wählst über den iOS- oder Android-Systemdialog einen Ordner. OCHE kann nur auf diesen gewählten Ordner zugreifen, prüft jedes verschlüsselte Backup nach dem Schreiben und kann deine Passphrase weder wiederherstellen noch zurücksetzen. Kopien im Zielordner bleiben erhalten, bis du oder der Dateianbieter sie löschen.</li>
     <li><strong>Welche Spielmodi gibt es?</strong> X01 (301, 501, 701 und mehr mit Double-In/Double-Out, Legs und Sets), Cricket, Around the Clock und Shanghai.</li>
     <li><strong>Welche Sprachen werden unterstützt?</strong> Die App ist in 27 Sprachen verfügbar, darunter Deutsch und Englisch.</li>
   </ul>
 
   <h2 lang="de">Kontakt</h2>
   <p lang="de">Fragen, Feedback oder Fehlermeldungen? Erreiche uns hier:</p>
-  <p><a href="https://github.com/Fruhji/fruhji.github.io/issues">github.com/Fruhji/fruhji.github.io/issues</a></p>
+  <p><a href="mailto:hello@fruhji.com?subject=OCHE%20support">hello@fruhji.com</a></p>
 
   <h2 lang="de">Datenschutz</h2>
   <p lang="de">OCHE hat kein Konto, kein Tracking und keine Werbung. Was du allein tust, bleibt auf deinem Gerät; nur ein gemeinsamer Raum schickt Namen und Würfe über einen Server, und er löscht sich nach zwölf Stunden selbst. Die vollständige <a href="privacy.html">Datenschutzerklärung</a>.</p>
 
-  <p class="updated">Last updated: June 2026</p>
+  <p class="updated">Last updated: August 2026</p>
 
 </body>
 </html>
