@@ -9,10 +9,13 @@ const ROUTES = new Map([
   ["/join/index.html", "/oche/join/index.html"],
   ["/oche", "/oche/index.html"],
   ["/oche/", "/oche/index.html"],
+  ["/oche/index.html", "/oche/index.html"],
   ["/oche/privacy", "/oche/privacy.html"],
+  ["/oche/privacy/", "/oche/privacy.html"],
   ["/oche/privacy.html", "/oche/privacy.html"],
   ["/oche/join", "/oche/join/index.html"],
   ["/oche/join/", "/oche/join/index.html"],
+  ["/oche/join/index.html", "/oche/join/index.html"],
 ]);
 
 const ASSOCIATION_PATHS = new Set([
