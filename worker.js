@@ -16,7 +16,22 @@ const ROUTES = new Map([
   ["/oche/join", "/oche/join/index.html"],
   ["/oche/join/", "/oche/join/index.html"],
   ["/oche/join/index.html", "/oche/join/index.html"],
+  // Impressum: bis zum 18.08.2026 hatte OCHE keines — weder hier noch sonstwo.
+  ["/impressum", "/oche/impressum.html"],
+  ["/impressum/", "/oche/impressum.html"],
+  ["/impressum.html", "/oche/impressum.html"],
+  ["/oche/impressum", "/oche/impressum.html"],
+  ["/oche/impressum.html", "/oche/impressum.html"],
+  // Der Support liegt als Abschnitt auf der Startseite, weil ASC dieselbe URL
+  // als Support- und als Marketing-Adresse fuehrt. Diese Route existiert fuer
+  // Links, die "/support" erwarten.
+  ["/support", "/oche/index.html"],
+  ["/support/", "/oche/index.html"],
 ]);
+
+// Bildschirmfotos der Startseite. Die Routentabelle ist absichtlich eng — ein
+// enges Muster statt eines Eintrags je Datei.
+const BILDER = /^\/oche\/img\/(en\/)?[a-z0-9]+\.webp$/;
 
 const ASSOCIATION_PATHS = new Set([
   "/.well-known/apple-app-site-association",
@@ -31,7 +46,7 @@ export default {
       url.pathname = assetPath;
       return env.ASSETS.fetch(new Request(url, request));
     }
-    if (ASSOCIATION_PATHS.has(url.pathname)) {
+    if (BILDER.test(url.pathname) || ASSOCIATION_PATHS.has(url.pathname)) {
       return env.ASSETS.fetch(request);
     }
     return new Response("Not Found", {

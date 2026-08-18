@@ -90,3 +90,36 @@ test('ein unbekannter Pfad bleibt 404', async () => {
   const { status } = await get('/gibt-es-nicht');
   assert.equal(status, 404);
 });
+
+test('das Impressum ist unter allen erwarteten Formen erreichbar', async () => {
+  // OCHE hatte bis zum 18.08.2026 kein Impressum. Fuer ein gewerbliches
+  // Angebot ist das nach § 5 DDG Pflicht, deshalb hier festgehalten.
+  for (const path of ['/impressum', '/impressum/', '/impressum.html', '/oche/impressum']) {
+    const { status, servedFrom } = await get(path);
+    assert.equal(status, 200, path);
+    assert.equal(servedFrom, '/oche/impressum.html', path);
+  }
+});
+
+test('die Bildschirmfotos der Startseite werden ausgeliefert', async () => {
+  // Die Routentabelle ist eine Allowlist: ohne eigenes Muster laedt kein Bild,
+  // und die Seite saehe lokal richtig aus und live leer.
+  for (const name of ['start', 'x01', 'raum', 'turnier', 'statistik']) {
+    for (const path of [`/oche/img/${name}.webp`, `/oche/img/en/${name}.webp`]) {
+      const { status, servedFrom } = await get(path);
+      assert.equal(status, 200, path);
+      assert.equal(servedFrom, path, path);
+    }
+  }
+  const { status } = await get('/oche/img/gibt-es-nicht.webp');
+  assert.equal(status, 404);
+});
+
+test('Startseite und Support liefern dieselbe Seite', async () => {
+  // ASC fuehrt fuer OCHE dieselbe URL als Support- und als Marketing-Adresse.
+  // Die Startseite muss den Supportteil deshalb selbst tragen.
+  const wurzel = await get('/');
+  const support = await get('/support');
+  assert.equal(wurzel.servedFrom, '/oche/index.html');
+  assert.equal(support.servedFrom, '/oche/index.html');
+});
